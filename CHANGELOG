@@ -2,16 +2,35 @@
 
 # Changelog
 
-## v0.5.5 (2024-04-30)
+## v0.5.8 (2024-05-19)
 
+- Linux: Next try to fix issue on Ubuntu/Unity where the window doesn't show up. ([#651](https://github.com/dynobo/normcap/pull/651))
+
+## v0.5.7 (2024-05-18)
+
+- All: Add french translation. Thanks, [@NathanBnm](https://github.com/NathanBnm)! ([#648](https://github.com/dynobo/normcap/pull/648))
+- Linux: Fix crash on wayland in case of user's home directory contains special character. Thanks, [@supersonictw](https://github.com/supersonictw)! ([#643](https://github.com/dynobo/normcap/issues/643))
+- Linux: Fix issue on Ubuntu/Unity where the window doesn't show up. ([#651](https://github.com/dynobo/normcap/pull/651))
+
+## v0.5.6 (2024-05-08)
+
+- All: Fix minor typos in translations. ([#641](https://github.com/dynobo/normcap/pull/641))
+- Linux: Fix clipboard on Wayland desktops other than GNOME. ([#640](https://github.com/dynobo/normcap/pull/640))
+
+## v0.5.5 (2024-05-07)
+
+- All: Add ukrainian translation. Thanks, [@thevllad](https://github.com/thevllad)! ([#625](https://github.com/dynobo/normcap/pull/625))
 - All: Add russian translation. Thanks, [@ViktorOn](https://github.com/ViktorOn)! ([#611](https://github.com/dynobo/normcap/pull/611))
 - All: Add italian translation. Thanks, [@albanobattistella](https://github.com/albanobattistella)! ([#622](https://github.com/dynobo/normcap/pull/622))
 - All: Add spanish translation. Thanks, [@haggen88](https://github.com/haggen88)! ([#614](https://github.com/dynobo/normcap/pull/614))
+- All: Add brazilian translation. Thanks, [@NameLessGO](https://github.com/NameLessGo)! ([#632](https://github.com/dynobo/normcap/pull/632))
 - Linux: Add `xsel` as another clipboard handler. Try `--clipboard-handler xsel` if
   Normcap's result isn't copied to the clipboard correctly.
 - Linux: Fix clipboard on Gnome 46 + Wayland. ([#620](https://github.com/dynobo/normcap/pull/620))
 - Linux: Auto-remove screenshot file from pictures-directory on Wayland. Thanks, [@PavelDobCZ23](https://github.com/PavelDobCZ23)! ([#600](https://github.com/dynobo/normcap/issues/600))
 - Linux: Fix `grim` being tried for screenshots on non-compatible compositors.
+- MacOS: Fix crash on start. ([#584](https://github.com/dynobo/normcap/issues/586))
+- MacOS: Add automated build for M1. ([#636](https://github.com/dynobo/normcap/issues/636))
 
 ## v0.5.4 (2024-01-15)
 

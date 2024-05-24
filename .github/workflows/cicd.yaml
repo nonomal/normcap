@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, windows-2022, ubuntu-22.04]
+        os: [macos-11, macos-14, windows-2022, ubuntu-22.04]
     steps:
       # Setup environment
       - uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
           echo "QT_QPA_PLATFORM=xcb" >> $GITHUB_ENV
 
       - name: Prepare macOS
-        if: matrix.os  == 'macos-12'
+        if: matrix.os  == 'macos-11' || matrix.os == 'macos-14'
         run: |
           brew install pkg-config tesseract tesseract-lang dylibbundler
           brew info tesseract
@@ -119,7 +119,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, windows-2022, ubuntu-22.04]
+        os: [macos-11, macos-14, windows-2022, ubuntu-22.04]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -137,7 +137,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, windows-2022, ubuntu-22.04]
+        os: [macos-11, macos-14, windows-2022, ubuntu-22.04]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -155,17 +155,23 @@ jobs:
         run: |
           (cat logs/briefcase*) || true
           find build/normcap || true
+      # For security reasons, github doesn't allow setting envvars using expressions
+      # directly. Therefore, we need an extra step:
       - name: Set current date as env variable
         shell: bash -l {0}
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Draft internal release
         uses: ncipollo/release-action@v1
+        # It's possible, that the run lacks release permissions (e.g. on forks). In
+        # this is not crucial, so we just silence the error.
+        continue-on-error: true
         if: github.repository_owner == 'dynobo'
         with:
           name: Internal
           body: "Only for internal tests. Should not be published. [${{ env.NOW }}]"
+          repo: normcap
+          owner: dynobo
           artifacts: "*/*.+(dmg|AppImage|msi|zip)"
-          artifactErrorsFailBuild: false
           allowUpdates: true
           draft: true
           prerelease: true
@@ -173,7 +179,7 @@ jobs:
           tag: "internal"
 
   test-documentation:
-    name:  Test documentation build
+    name: Test documentation build
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -235,7 +241,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-12, windows-2022]
+        os: [macos-11, macos-14, windows-2022, ubuntu-22.04]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

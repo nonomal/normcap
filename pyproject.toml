@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "normcap"
-version = "0.5.4"
+version = "0.5.8"
 description = "OCR-powered screen-capture tool to capture information instead of images."
 keywords = ["screenshot", "ocr", "capture", "clipboard"]
 readme = "README.md"
@@ -27,8 +27,8 @@ classifiers = [
   "Operating System :: MacOS",
 ]
 dependencies = [
-  "shiboken6==6.7.0",
-  "PySide6-Essentials==6.7.0",
+  "shiboken6==6.7.1",
+  "PySide6-Essentials==6.7.1",
   "jeepney==0.8.0",
 ]
 
@@ -100,9 +100,8 @@ charts = [
   "pydeps normcap --max-bacon=1 -o=pydeps_internal.png -T=png",
 ]
 # Main tasks:
-# ONHOLD: Re-add "typing" to check and pre-commit when PySide6 6.7.1 is released
-check = ["locales-compile", "fmt-check", "test", "security"]
-pre-commit = ["locales-compile", "fmt", "test", "security", "charts"]
+check = ["locales-compile", "fmt-check", "typing", "test", "security"]
+pre-commit = ["locales-compile", "fmt", "typing", "test", "security", "charts"]
 locales-compile = "python bundle/l10n.py"
 locales-update = "python bundle/l10n.py --update-all"
 create-locale = "python bundle/l10n.py --create-new"
@@ -230,7 +229,7 @@ max_cluster_size = 1
 [tool.briefcase]
 project_name = "NormCap"
 bundle = "eu.dynobo"
-version = "0.5.4"
+version = "0.5.8"
 url = "https://github.com/dynobo/normcap"
 license = "GPLv3"
 author = 'dynobo'
@@ -243,7 +242,7 @@ sources = ["normcap"]
 icon = "bundle/imgs/normcap"
 installer_icon = "bundle/imgs/normcap_install"
 installer_background = "bundle/imgs/normcap_install_bg"
-requires = ["PySide6-Essentials==6.7.0", "shiboken6==6.7.0", "jeepney==0.8.0"]
+requires = ["PySide6-Essentials==6.7.1", "shiboken6==6.7.1", "jeepney==0.8.0"]
 cleanup_paths = [
   # Globs
   "**/[pP]y[sS]ide6/*[qQ]t*[oO]pen[gG][lL]*",
@@ -345,7 +344,7 @@ use_full_install_path = false
 
 
 [tool.tbump.version]
-current = "0.5.4"
+current = "0.5.8"
 regex = '''
   (?P<major>\d+)
   \.
@@ -371,7 +370,7 @@ src = "normcap/__init__.py"
 search = '__version__ = "{current_version}"'
 
 [[tool.tbump.file]]
-src = "docs/index.html"
+src = "docs/index.md"
 
 [[tool.tbump.file]]
 src = "README.md"
